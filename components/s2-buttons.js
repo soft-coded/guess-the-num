@@ -1,23 +1,28 @@
-import React from 'react'
-import {StyleSheet, View, Button} from "react-native"
+import React, {useRef} from 'react'
+import {StyleSheet, View, Button, Alert} from "react-native"
+import MainButton from "./cust-button"
 
 function guessNum(min,max){
     return Math.floor(Math.random()*(max-min))+min
 }
-let gmax=100, gmin=1
 
-function Buttons({guess,setGuess,checkGuess}) {
+function Buttons({guess,setGuess,checkGuess, result, userNum}) {
+    const gmax=useRef(100), gmin=useRef(1)
     function changeNum(char){
-        if(char==='l') gmax=guess
-        else gmin=guess+1
-        let next=guessNum(gmin,gmax)
+        if(char==='l' && userNum<guess) gmax.current=guess
+        else if(char==='g' && userNum>guess) gmin.current=guess+1
+        else{
+            Alert.alert("Why you lying?","Liar ass nigga",[{text: ":((((", style: "destructive"}])
+            return
+        }
+        let next=guessNum(gmin.current,gmax.current)
         checkGuess(next)
         setGuess(next)
     }
     return (
         <View style={styles.buttonContainer}>
-            <View style={styles.button}><Button title="Lesser" color="brown" onPress={()=>changeNum('l')}/></View>
-            <View style={styles.button}><Button title="Greater" color="green" onPress={()=>changeNum('g')}/></View>
+            <MainButton style={styles.buttonL} textStyle={styles.buttonLText} onPress={()=>{if(!result)changeNum('l')}}>LESSER</MainButton>
+            <MainButton style={styles.buttonG} textStyle={styles.buttonGText} onPress={()=>{if(!result)changeNum('g')}}>GREATER</MainButton>
         </View>
     )
 }
@@ -28,8 +33,33 @@ const styles=StyleSheet.create({
         width: "100%",
         justifyContent: "space-around"
     },
-    button: {
-        width: 100
+    buttonL: {
+        width: 150,
+        borderWidth: 2,
+        borderColor: "red",
+        borderRadius: 10,
+        paddingVertical: 10
+    },
+    buttonLText: {
+        color: "red",
+        textAlign: "center",
+        fontFamily: "open-sans-bold",
+        fontSize: 22,
+        letterSpacing: 1
+    },
+    buttonG: {
+        width: 150,
+        borderWidth: 2,
+        borderColor: "lightgreen",
+        borderRadius: 10,
+        paddingVertical: 10,
+    },
+    buttonGText: {
+        color: "lightgreen",
+        textAlign: "center",
+        fontFamily: "open-sans-bold",
+        fontSize: 22,
+        letterSpacing: 1
     }
 })
 

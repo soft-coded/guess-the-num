@@ -11,14 +11,14 @@ function Header() {
 
 const styles=StyleSheet.create({
     text: {
-        color: "white",
-        fontSize: 30,
-        fontFamily: "monospace",
-        fontWeight: "bold",
-        letterSpacing: 2,
-        textShadowColor: 'grey',
-        textShadowOffset: {width: 7, height: 7},
-        textShadowRadius: 7
+        color: "#f08a5d",
+        fontSize: 35,
+        fontFamily: "open-sans-bold",
+        letterSpacing: 1,
+        textShadowColor: "#799351",
+        textShadowOffset: {width: 3, height: 3},
+        textShadowRadius: 7,
+        marginTop: 100
     }
 })
 
