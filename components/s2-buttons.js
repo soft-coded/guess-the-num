@@ -12,7 +12,7 @@ function Buttons({guess,setGuess,checkGuess, result, userNum}) {
         if(char==='l' && userNum<guess) gmax.current=guess
         else if(char==='g' && userNum>guess) gmin.current=guess+1
         else{
-            Alert.alert("Why you lying?","Liar ass nigga",[{text: ":((((", style: "destructive"}])
+            Alert.alert("Why are you lying?","You know this is not right",[{text: "Sorry!", style: "destructive"}])
             return
         }
         let next=guessNum(gmin.current,gmax.current)
