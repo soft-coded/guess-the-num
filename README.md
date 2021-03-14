@@ -1,5 +1,5 @@
 # Guess the number
-An mobile app built using expo and react native to play "guess the number".
+A mobile app built using expo and react native to play "guess the number".
 
 ## Tools Used
 * React
